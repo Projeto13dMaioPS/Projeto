@@ -18,4 +18,6 @@ public class Jornal {
     @JoinColumn(name = "itemAcervoId")
     private ItemAcervo itemAcervo;
 
+    private String nome;
+
 }
