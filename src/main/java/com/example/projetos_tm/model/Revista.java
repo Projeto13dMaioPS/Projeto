@@ -12,6 +12,8 @@ public class Revista {
     @Column(updatable = false, nullable = false)
     private UUID id;
 
+    private String nome;
+
     @ManyToOne
     @JoinColumn(name = "itemAcervoId")
     private ItemAcervo itemAcervo;
