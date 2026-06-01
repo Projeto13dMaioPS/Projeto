@@ -12,8 +12,12 @@ public class Jornal {
     @Column(updatable = false, nullable = false)
     private UUID id;
 
+    private String nomeJornal;
+
     @ManyToOne
     @JoinColumn(name = "itemAcervoId")
     private ItemAcervo itemAcervo;
+
+    private String nome;
 
 }

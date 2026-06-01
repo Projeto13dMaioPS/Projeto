@@ -25,3 +25,4 @@ public class ItemAcervoService {
     public void deletar(Long id) { repository.deleteById(id); }
 
 }
+
