@@ -44,7 +44,7 @@
     <div class="container">
 
         <span class="navbar-brand fw-bold">
-            📚 Biblioteca Dashboard
+            Catálogo do Acervo
         </span>
 
         <div class="d-flex align-items-center">
@@ -52,11 +52,6 @@
             <span class="navbar-text text-white me-3 d-none d-md-inline"
                   th:text="'Logado: ' + ${session.usuarioLogado.email} + ' [' + ${session.usuarioLogado.tipo} + ']'">
             </span>
-
-            <a href="/movimentacoes/historico"
-               class="btn btn-outline-info btn-sm me-2">
-                Histórico
-            </a>
 
             <a href="/usuario/logout"
                class="btn btn-danger btn-sm">
@@ -67,17 +62,7 @@
 </nav>
 
 <div class="container py-4">
-
-    <div th:if="${param.success == 'reserva'}"
-         class="alert alert-success">
-        Reserva realizada com sucesso!
-    </div>
-
-    <div th:if="${param.success == 'emprestimo'}"
-         class="alert alert-success">
-        Empréstimo realizado com sucesso!
-    </div>
-
+    
     <div th:if="${param.error == 'negado'}"
          class="alert alert-danger">
         Acesso negado.

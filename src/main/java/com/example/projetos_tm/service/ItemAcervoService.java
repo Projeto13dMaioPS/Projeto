@@ -16,6 +16,7 @@ public class ItemAcervoService {
 
     public List<ItemAcervo> listarTodos() { return repository.findAll(); }
     public ItemAcervo buscarPorId(Long id) { return repository.findById(id).orElse(null); }
+    public ItemAcervo buscarPorTitulo(String Titulo) {return.repository.findBy}
     public ItemAcervo salvar(ItemAcervo item) { return repository.save(item); }
     public void deletar(Long id) { repository.deleteById(id); }
 }

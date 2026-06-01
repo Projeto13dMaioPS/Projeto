@@ -19,6 +19,11 @@ public class ItemAcervo {
     @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] imagem;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TipoItem tipo;
+
+
     public ItemAcervo(int id, String nome, String descricao, byte[] imagem) {
         this.id = id;
         this.nome = nome;
