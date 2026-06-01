@@ -16,7 +16,12 @@ public class ItemAcervoService {
 
     public List<ItemAcervo> listarTodos() { return repository.findAll(); }
     public ItemAcervo buscarPorId(Long id) { return repository.findById(id).orElse(null); }
-    public ItemAcervo buscarPorTitulo(String Titulo) {return.repository.findBy}
+    public ItemAcervo buscarPorNome(String nome) {return (ItemAcervo) repository.findByNome(nome); }
+    public ItemAcervo buscarPorTipo(String tipo) { return (ItemAcervo) repository.findByTipo(tipo);}
+    public ItemAcervo buscarPorDescricao(String descricao) { return (ItemAcervo) repository.findByDescricao(descricao);}
+
     public ItemAcervo salvar(ItemAcervo item) { return repository.save(item); }
+
     public void deletar(Long id) { repository.deleteById(id); }
+
 }
