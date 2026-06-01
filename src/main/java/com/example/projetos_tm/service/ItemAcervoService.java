@@ -20,6 +20,7 @@ public class ItemAcervoService {
     public ItemAcervo buscarPorTipo(String tipo) { return (ItemAcervo) repository.findByTipo(tipo);}
     public ItemAcervo buscarPorDescricao(String descricao) { return (ItemAcervo) repository.findByDescricao(descricao);}
 
+
     public ItemAcervo salvar(ItemAcervo item) { return repository.save(item); }
 
     public void deletar(Long id) { repository.deleteById(id); }
