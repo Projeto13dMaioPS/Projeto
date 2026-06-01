@@ -13,4 +13,6 @@ public interface ItemAcervoRepository extends JpaRepository<ItemAcervo, Long> {
     List<ItemAcervo> findByDescricao(String descricao);
 
 
+
+
 }

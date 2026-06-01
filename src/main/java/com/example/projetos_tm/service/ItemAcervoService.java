@@ -15,7 +15,6 @@ public class ItemAcervoService {
     }
 
     public List<ItemAcervo> listarTodos() { return repository.findAll(); }
-    public ItemAcervo buscarPorId(Long id) { return repository.findById(id).orElse(null); }
     public ItemAcervo buscarPorNome(String nome) {return (ItemAcervo) repository.findByNome(nome); }
     public ItemAcervo buscarPorTipo(String tipo) { return (ItemAcervo) repository.findByTipo(tipo);}
     public ItemAcervo buscarPorDescricao(String descricao) { return (ItemAcervo) repository.findByDescricao(descricao);}
