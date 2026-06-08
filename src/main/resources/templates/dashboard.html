@@ -32,9 +32,9 @@
     <section>
         <h3>Resumo</h3>
         <ul>
-            <li>📚 Total de Itens: <span th:text="${#lists.size(itens)}">0</span></li>
-            <li>✅ Empréstimos: 12</li>
-            <li>⏳ Reservas: 8</li>
+            <li>Total de Itens: <span th:text="${#lists.size(itens)}">0</span></li>
+            <li>Empréstimos: 12</li>
+            <li>Reservas: 8</li>
         </ul>
     </section>
 
@@ -43,6 +43,8 @@
     <form>
         <input type="text" placeholder="Pesquisar item...">
         <button type="submit">Buscar</button>
+
+
     </form>
 
     <hr>
@@ -66,13 +68,8 @@
                 <td th:text="${item.descricao}"></td>
                 <td>-</td>
                 <td>
-                    <form th:action="@{/reservas/solicitar/{itemId}(itemId=${item.id})}" method="post" style="display:inline;">
-                        <button type="submit">Reservar</button>
-                    </form>
-
-                    <form th:action="@{/emprestimos/solicitar/{itemId}(itemId=${item.id})}" method="post" style="display:inline;">
-                        <input type="hidden" name="dias" value="7">
-                        <button type="submit">Emprestar</button>
+                    <form th:action="@{/itemAcervo/acessarItem/{itemId}(itemId=${item.id})}" method="post" style="display:inline;">
+                        <button type="submit">Detalhes do Item</button>
                     </form>
 
                     <a th:href="@{/itens/editar/{id}(id=${item.id})}">Editar</a>

@@ -22,7 +22,7 @@
 
     <section>
         <h3>Catálogo do Acervo</h3>
-        <p> Explore nossa coleção de Livros, Revistas, Jornais e Outros</p>
+        <p> Explore nossa coleção de  <span th:text="${#lists.size(itens)}">0</span> Itens, sendo livros, revistas, jornais e outros</p>
 
         <form>
             <input type="text" placeholder="Pesquisar item...">

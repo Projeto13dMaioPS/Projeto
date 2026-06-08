@@ -24,17 +24,19 @@ public class ItemAcervo {
     private TipoItem tipo;
 
 
-    public ItemAcervo(int id, String nome, String descricao, byte[] imagem) {
+    public ItemAcervo(int id, String nome, String descricao, byte[] imagem, TipoItem tipo) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.imagem = imagem;
+        this.tipo = tipo;
     }
 
-    public ItemAcervo(String nome, String descricao, byte[] imagem) {
+    public ItemAcervo(String nome, String descricao, byte[] imagem, TipoItem tipo) {
         this.nome = nome;
         this.descricao = descricao;
         this.imagem = imagem;
+        this.tipo = tipo;
     }
 
     public ItemAcervo() {}
@@ -69,5 +71,13 @@ public class ItemAcervo {
 
     public void setImagem(byte[] imagem) {
         this.imagem = imagem;
+    }
+
+    public TipoItem getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoItem tipo) {
+        this.tipo = tipo;
     }
 }
