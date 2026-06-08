@@ -27,7 +27,7 @@ public class UsuarioController {
 
         if (usuarioLogado != null) {
             session.setAttribute("usuarioLogado", usuarioLogado);
-            return "redirect:/itens"; // Vai para a listagem do acervo
+            return "redirect:/itemAcervo/dashboard"; // Vai para a listagem do acervo
         }
 
         return "redirect:/usuario/login?error=true";
