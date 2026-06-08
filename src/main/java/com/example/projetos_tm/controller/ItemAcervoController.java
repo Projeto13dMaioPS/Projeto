@@ -40,4 +40,17 @@ public class ItemAcervoController {
         itemAcervoService.salvar(item);
         return "redirect:/itemAcervo/dashboard";
     }
+
+    @GetMapping("/acessarItem")
+    public String acessarItem(Model model,@RequestParam ItemAcervo item) {
+
+        if (item.getTipo().name().equals("LIVRO")) model.addAttribute("livro", );
+        if (item.getTipo().name().equals("JORNAL")) model.addAttribute("jornal", );
+        if (item.getTipo().name().equals("REVISTA")) model.addAttribute("revista", );
+        if (item.getTipo().name().equals("OUTRO")) model.addAttribute("outro", );
+
+        return "detalhesItem";
+
+    }
+
 }
