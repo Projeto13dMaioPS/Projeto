@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/itens")
+@RequestMapping("/itemAcervo")
 public class ItemAcervoController {
 
     private final ItemAcervoService itemAcervoService;
@@ -18,7 +18,7 @@ public class ItemAcervoController {
         this.itemAcervoService = itemAcervoService;
     }
 
-    @GetMapping
+    @GetMapping("/dashboard")
     public String exibirDashboard(HttpSession session, Model model) {
         Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 
@@ -31,13 +31,13 @@ public class ItemAcervoController {
         return "dashboard"; // renderiza templates/dashboard.html
     }
 
-    @PostMapping("/novo")
+    @PostMapping("/novoItem")
     public String cadastrar(@ModelAttribute ItemAcervo item, HttpSession session) {
         Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
         if (usuarioLogado == null || usuarioLogado.getTipo().name().equals("USUARIO")) {
             return "redirect:/itens?error=negado";
         }
         itemAcervoService.salvar(item);
-        return "redirect:/itens";
+        return "redirect:/itemAcervo/dashboard";
     }
 }
