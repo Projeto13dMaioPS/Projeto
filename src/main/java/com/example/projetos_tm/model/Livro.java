@@ -18,10 +18,6 @@ public class Livro {
     @Column(nullable = false)
     private String descricao;
 
-    @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
-    private byte[] imagem;
-
     @ManyToOne
     @JoinColumn(name = "editoraId")
     private Editora editora;
