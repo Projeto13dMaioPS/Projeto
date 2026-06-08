@@ -1,11 +1,13 @@
 package com.example.projetos_tm.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.util.UUID;
 
-@Entity
-public class Editora {
+public class Autor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -18,13 +20,13 @@ public class Editora {
     @Column(updatable = false, nullable = true)
     private UUID idade;
 
-    public Editora(UUID id, UUID idade, UUID nome) {
+    public Autor(UUID id, UUID nome, UUID idade) {
         this.id = id;
-        this.idade = idade;
         this.nome = nome;
+        this.idade = idade;
     }
 
-    public Editora() {
+    public Autor() {
     }
 
     public UUID getId() {
