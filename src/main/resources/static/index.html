@@ -16,15 +16,42 @@
 
 <main>
     <h1>Consulte Nosso Acervo</h1>
-    <p>Acesse a plataforma interna para Analise das Obras presentes no Museu.</p>
+    <p>Acesse a <plataforma></plataforma> para Analise das Obras presentes no Museu.</p>
 
     <hr>
 
     <section>
         <h2>Área de Membros</h2>
-        <p>Para interagir com as mídias, realizar sugestoes autentique-se abaixo.</p>
+        <p>Para interagir com as obras, realizar sugestoes autentique-se abaixo.</p>
         <a href="/usuario/login">Fazer Login</a>
     </section>
+
+    <section>
+        <h3>Nossas Obras !</h3>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Tipo</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${itens}">
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.nome}"></td>
+                <td th:text="${item.descricao}"></td>
+                <td>-</td>
+                <td>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
 </main>
 
 </body>
