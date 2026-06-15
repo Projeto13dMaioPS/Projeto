@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/itemAcervo")
 public class ItemAcervoController {
 
+
     private final ItemAcervoService itemAcervoService;
 
     public ItemAcervoController(ItemAcervoService itemAcervoService) {
@@ -44,12 +45,10 @@ public class ItemAcervoController {
     @GetMapping("/acessarItem")
     public String acessarItem(Model model,@RequestParam ItemAcervo item) {
 
-        if (item.getTipo().name().equals("LIVRO")) model.addAttribute("livro", );
-        if (item.getTipo().name().equals("JORNAL")) model.addAttribute("jornal", );
-        if (item.getTipo().name().equals("REVISTA")) model.addAttribute("revista", );
-        if (item.getTipo().name().equals("OUTRO")) model.addAttribute("outro", );
-
-        return "detalhesItem";
+        if (item.getTipo().name().equals("LIVRO")) return "redirect:/livro/acessarLivro/{item}";
+        if (item.getTipo().name().equals("JORNAL")) return "redirect:/jornal/acessarJornal/{item}";
+        if (item.getTipo().name().equals("REVISTA")) return "redirect:/revista/acessarRevista/{item}";
+        return "redirect:/outro/acessarOutro/{item}";
 
     }
 
