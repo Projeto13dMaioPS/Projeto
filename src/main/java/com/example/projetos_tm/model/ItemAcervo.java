@@ -2,12 +2,15 @@ package com.example.projetos_tm.model;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 public class ItemAcervo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(updatable = false, nullable = false)
+    private UUID id;
 
     @Column(unique = true,nullable = false)
     private String nome;
@@ -24,7 +27,7 @@ public class ItemAcervo {
     private TipoItem tipo;
 
 
-    public ItemAcervo(int id, String nome, String descricao, byte[] imagem, TipoItem tipo) {
+    public ItemAcervo(UUID id, String nome, String descricao, byte[] imagem, TipoItem tipo) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -41,11 +44,11 @@ public class ItemAcervo {
 
     public ItemAcervo() {}
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
