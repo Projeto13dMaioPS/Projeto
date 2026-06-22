@@ -26,9 +26,16 @@ src/
 └── test/            # Testes automatizados
 ```
 
+## Quadro de atividades do grupo ( Kanban )
+
+Voce pode acompanhar o desenvolvimento pelo quadro de atividades do grupo, com oque tem que seer feito, oque esta em revisao e oque ja foi implementado !
+
+segue o link abaixo:
+`https://github.com/orgs/Projeto13dMaioPS/projects/1`
+
 ## Branches
 
-O repositório possui a branch `base`, desenvolvimento em andamento do projeto, e a branch `main` com o projeto final ( atual )
+O repositório possui a branch `base`, que é o desenvolvimento em andamento do projeto, e a branch `main` com o projeto final ( atual )
 
 ---
 
