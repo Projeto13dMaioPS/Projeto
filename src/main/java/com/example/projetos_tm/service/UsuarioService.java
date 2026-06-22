@@ -5,6 +5,7 @@ import com.example.projetos_tm.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UsuarioService {
@@ -19,7 +20,7 @@ public class UsuarioService {
         return repository.findAll();
     }
 
-    public Usuario buscarPorId(Long id) {
+    public Usuario buscarPorId(UUID id) {
         return repository.findById(id).orElse(null);
     }
 
@@ -27,10 +28,10 @@ public class UsuarioService {
         return repository.save(usuario);
     }
 
-    public void deletar(Long id) {
+    public void deletar(UUID id) {
         repository.deleteById(id);
     }
-
+//
     // Regra de Autenticação para a sessão
     public Usuario realizarLogin(String email, String senha) {
 
