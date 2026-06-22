@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Item - Acervo Digital</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #f4f6f8; color: #333; }
+        header { background: #1976d2; padding: 15px 30px; color: white; }
+        .container { max-width: 800px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        h2 { margin-top: 0; margin-bottom: 30px; font-size: 20px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group.full-width { grid-column: 1 / -1; }
+        label { font-size: 14px; margin-bottom: 8px; color: #555; }
+        input, select, textarea { padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif; }
+        .actions { display: flex; justify-content: flex-end; gap: 15px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+        .btn-cancel { padding: 10px 20px; background: white; border: 1px solid #ccc; border-radius: 4px; color: #333; text-decoration: none; }
+        .btn-save { padding: 10px 20px; background: #1976d2; border: none; border-radius: 4px; color: white; cursor: pointer; }
+    </style>
+</head>
+<body>
+<header>
+    <div>Acervo Digital</div>
+</header>
+
+<div class="container">
+    <h2>Adicionar Novo Item</h2>
+
+    <form action="/itens/salvar" method="post">
+        <div class="form-grid">
+            <div class="form-group full-width">
+                <label>Titulo</label>
+                <input type="text" name="nome" required>
+            </div>
+
+            <div class="form-group">
+                <label>Autor</label>
+                <input type="text" name="autor">
+            </div>
+
+            <div class="form-group">
+                <label>Ano de Publicacao</label>
+                <input type="number" name="ano">
+            </div>
+
+            <div class="form-group">
+                <label>Categoria</label>
+                <select name="tipo">
+                    <option value="LIVRO">Livro</option>
+                    <option value="REVISTA">Revista</option>
+                    <option value="JORNAL">Jornal</option>
+                    <option value="OUTRO">Outro</option>
+                </select>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Sinopse / Descricao</label>
+                <textarea name="descricao" rows="5" required></textarea>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="/dashboard" class="btn-cancel">Cancelar</a>
+            <button type="submit" class="btn-save">Salvar Item</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
