@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Item - Acervo Digital</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #f4f6f8; color: #333; }
+        header { background: #1976d2; padding: 15px 30px; color: white; display: flex; justify-content: space-between; align-items: center; }
+        header a { color: white; text-decoration: none; font-size: 14px; }
+        .container { max-width: 900px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; gap: 30px; }
+        .item-image { width: 300px; height: 400px; background: #ddd; border-radius: 4px; object-fit: cover; }
+        .item-info { flex: 1; }
+        h1 { margin-top: 0; font-size: 28px; color: #1976d2; }
+        .author { font-size: 18px; color: #666; margin-bottom: 20px; }
+        .meta-info { margin-bottom: 20px; font-size: 14px; color: #555; }
+        .meta-info p { margin: 8px 0; }
+        .meta-info span { font-weight: bold; }
+        .description { line-height: 1.6; margin-bottom: 30px; }
+        .actions-block { display: flex; gap: 10px; align-items: center; }
+        .actions-block form { margin: 0; }
+        .btn-back { display: inline-block; padding: 10px 20px; background: #e0e0e0; color: #333; text-decoration: none; border-radius: 4px; font-size: 14px; }
+        .btn-favorite { border: none; padding: 10px 20px; background: #1976d2; color: white; border-radius: 4px; cursor: pointer; font-size: 14px; }
+    </style>
 </head>
 <body>
+<header>
+    <div>Acervo Digital</div>
+    <a href="/">Voltar ao Catalogo</a>
+</header>
 
+<div class="container">
+    <img th:src="${item.urlImagem != null ? item.urlImagem : 'https://via.placeholder.com/300x400'}" class="item-image" alt="Imagem da Obra">
+    <div class="item-info">
+        <h1 th:text="${item.nome}"></h1>
+        <div class="author" th:text="${item.autor != null ? item.autor : 'Autor Desconhecido'}"></div>
+
+        <div class="meta-info">
+            <p><span>Ano de Publicacao:</span> <th:block th:text="${item.ano != null ? item.ano : '-'}"></th:block></p>
+            <p><span>Categoria:</span> <th:block th:text="${item.tipo != null ? item.tipo : '-'}"></th:block></p>
+            <p><span>ID do Item:</span> <th:block th:text="${item.id}"></th:block></p>
+        </div>
+
+        <div class="description" th:text="${item.descricao}"></div>
+
+        <div class="actions-block">
+            <a href="/" class="btn-back">Voltar</a>
+            <form th:action="@{/interesse/adicionar/{id}(id=${item.id})}" method="post" th:if="${session.usuarioLogado != null}">
+                <button type="submit" class="btn-favorite">Adicionar aos Favoritos</button>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

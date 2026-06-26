@@ -12,6 +12,7 @@ public interface ItemAcervoRepository extends JpaRepository<ItemAcervo, UUID> {
     List<ItemAcervo> findByNome(String nome);
     List<ItemAcervo> findByTipo(String tipo);
     List<ItemAcervo> findByDescricao(String descricao);
+    List<ItemAcervo> findById(int id);
 
 
 

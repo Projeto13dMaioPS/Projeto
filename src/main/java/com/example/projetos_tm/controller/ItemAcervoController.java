@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/itemAcervo")
 public class ItemAcervoController {
@@ -17,6 +19,27 @@ public class ItemAcervoController {
 
     public ItemAcervoController(ItemAcervoService itemAcervoService) {
         this.itemAcervoService = itemAcervoService;
+    }
+
+    @PostMapping("/acessarItem/{id}")
+    public String acessarItem(@PathVariable("id") int id, Model model) {
+        Optional<ItemAcervo> itemOptional = Optional.ofNullable(itemAcervoService.buscarPorId(id));
+
+        if (itemOptional.isPresent()) {
+            model.addAttribute("item", itemOptional.get());
+
+            return "detalhesitem";
+        } else {
+
+            return "redirect:/";
+        }
+    }
+
+    @GetMapping("/")
+    public String listarItens(Model model) {
+        // Busca todos os itens no serviço e envia para o index.html com o nome "itens"
+        model.addAttribute("itens", itemAcervoService.listarTodos());
+        return "index";
     }
 
     @GetMapping("/dashboard")

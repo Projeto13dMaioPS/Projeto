@@ -5,6 +5,7 @@ import com.example.projetos_tm.model.ItemAcervo;
 import com.example.projetos_tm.repository.ItemAcervoRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ItemAcervoService {
@@ -18,11 +19,13 @@ public class ItemAcervoService {
     public ItemAcervo buscarPorNome(String nome) {return (ItemAcervo) repository.findByNome(nome); }
     public ItemAcervo buscarPorTipo(String tipo) { return (ItemAcervo) repository.findByTipo(tipo);}
     public ItemAcervo buscarPorDescricao(String descricao) { return (ItemAcervo) repository.findByDescricao(descricao);}
+    public ItemAcervo buscarPorId(int id) { return (ItemAcervo) repository.findById(id);}
+
 
 
     public ItemAcervo salvar(ItemAcervo item) { return repository.save(item); }
 
-    public void deletar(Long id) { repository.deleteById(id); }
+    public void deletar(UUID id) { repository.deleteById(id); }
 
 }
 
