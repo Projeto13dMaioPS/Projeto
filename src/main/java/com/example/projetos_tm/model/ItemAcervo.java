@@ -2,6 +2,7 @@ package com.example.projetos_tm.model;
 
 import jakarta.persistence.*;
 
+import java.util.Base64;
 import java.util.UUID;
 
 @Entity
@@ -15,8 +16,8 @@ public class ItemAcervo {
     @Column(unique = true,nullable = false)
     private String nome;
 
-    @Column(length = 5000,nullable = false)
-    private String descricao;
+    @Column(length = 500)
+    private String descricaoBreve;
 
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
@@ -27,17 +28,17 @@ public class ItemAcervo {
     private TipoItem tipo;
 
 
-    public ItemAcervo(UUID id, String nome, String descricao, byte[] imagem, TipoItem tipo) {
+    public ItemAcervo(UUID id, String nome, String descricaoBreve, byte[] imagem, TipoItem tipo) {
         this.id = id;
         this.nome = nome;
-        this.descricao = descricao;
+        this.descricaoBreve = descricaoBreve;
         this.imagem = imagem;
         this.tipo = tipo;
     }
 
-    public ItemAcervo(String nome, String descricao, byte[] imagem, TipoItem tipo) {
+    public ItemAcervo(String nome, String descricaoBreve, byte[] imagem, TipoItem tipo) {
         this.nome = nome;
-        this.descricao = descricao;
+        this.descricaoBreve = descricaoBreve;
         this.imagem = imagem;
         this.tipo = tipo;
     }
@@ -60,12 +61,12 @@ public class ItemAcervo {
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescricaoBreve() {
+        return descricaoBreve;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescricaoBreve(String descricaoBreve) {
+        this.descricaoBreve = descricaoBreve;
     }
 
     public byte[] getImagem() {
@@ -83,4 +84,10 @@ public class ItemAcervo {
     public void setTipo(TipoItem tipo) {
         this.tipo = tipo;
     }
+
+    public String getImagemEmBase64() {
+        if (this.imagem == null) return null;
+        return "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(this.imagem);
+    }
+
 }

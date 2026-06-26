@@ -20,7 +20,7 @@ public class JornalController {
     public String acessarJornal(@PathVariable ItemAcervo item, Model model) {
 
         model.addAttribute("jornal", jornalService.buscarJornalPItem(item));
-        model.addAttribute("imagem", item.getImagem());
+        model.addAttribute("imagem", item.getImagemEmBase64());
 
         return "detalhesItem";
 

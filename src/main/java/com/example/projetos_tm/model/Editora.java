@@ -12,15 +12,15 @@ public class Editora {
     @Column(updatable = false, nullable = false)
     private UUID id;
 
-    @Column(updatable = false, nullable = false)
-    private UUID nome;
+    @Column(nullable = false)
+    private String nome;
 
-    @Column(updatable = false, nullable = true)
-    private UUID idade;
+    @Column(nullable = false)
+    private String cidade;
 
-    public Editora(UUID id, UUID idade, UUID nome) {
+    public Editora(UUID id, String idade, String nome) {
         this.id = id;
-        this.idade = idade;
+        this.cidade = cidade;
         this.nome = nome;
     }
 
@@ -35,20 +35,20 @@ public class Editora {
         this.id = id;
     }
 
-    public UUID getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(UUID nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public UUID getIdade() {
-        return idade;
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setIdade(UUID idade) {
-        this.idade = idade;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 }
 
