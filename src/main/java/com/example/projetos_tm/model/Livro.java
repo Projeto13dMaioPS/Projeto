@@ -15,15 +15,15 @@ public class Livro {
     @Column(nullable = false)
     private String titulo;
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 5000)
     private String descricao;
 
     @ManyToOne
-    @JoinColumn(name = "editoraId")
+    @JoinColumn(name = "editora")
     private Editora editora;
 
     @ManyToOne
-    @JoinColumn(name = "itemAcervoId")
+    @JoinColumn(name = "itemAcervo")
     private ItemAcervo itemAcervo;
 
     public Livro(UUID id, ItemAcervo itemAcervo, Editora editora, String descricao, String titulo) {

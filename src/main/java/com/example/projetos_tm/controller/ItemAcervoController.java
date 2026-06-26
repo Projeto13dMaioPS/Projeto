@@ -71,7 +71,10 @@ public class ItemAcervoController {
         if (item.getTipo().name().equals("LIVRO")) return "redirect:/livro/acessarLivro/{item}";
         if (item.getTipo().name().equals("JORNAL")) return "redirect:/jornal/acessarJornal/{item}";
         if (item.getTipo().name().equals("REVISTA")) return "redirect:/revista/acessarRevista/{item}";
-        return "redirect:/outro/acessarOutro/{item}";
+
+        model.addAttribute("outro", item);
+        model.addAttribute("imagem", item.getImagemEmBase64());
+        return "detalhesItem";
 
     }
 

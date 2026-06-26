@@ -25,7 +25,7 @@ public class Historico {
     private LocalDateTime dataCadastro;
 
     @ManyToOne
-    @JoinColumn(name = "UsuarioId")
+    @JoinColumn(name = "Usuario")
     private Usuario usuario;
 
     public Historico(UUID id, String acao, LocalDateTime dataCadastro, Usuario usuario) {

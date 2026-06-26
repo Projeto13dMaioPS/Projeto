@@ -13,11 +13,11 @@ public class ObrasFavoritadas {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = "usuarioId")
+    @JoinColumn(nullable = false, name = "usuario")
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = "itemAcervoId")
+    @JoinColumn(nullable = false, name = "itemAcervo")
     private ItemAcervo itemAcervo;
 
     public ObrasFavoritadas(UUID id, Usuario usuario, ItemAcervo itemAcervo) {
