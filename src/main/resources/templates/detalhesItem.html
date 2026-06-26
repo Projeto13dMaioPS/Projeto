@@ -30,7 +30,20 @@
 </header>
 
 <div class="container">
-    <img th:src="${item.urlImagem != null ? item.urlImagem : 'https://via.placeholder.com/300x400'}" class="item-image" alt="Imagem da Obra">
+
+    <div th:if="${imagem}">
+        <img th:src="${imagem}" alt="Imagem do Acervo" />
+    </div>
+
+    <div th:unless="${imagem}">
+        <p>Nenhuma imagem cadastrada.</p>
+    </div>
+
+    <div th:if="${jornal}">
+        <h1 th:text="${jornal.titulo}">Título Padrão (Será substituído)</h1>
+        <p>Publicado em: <span th:text="${conteudo.dataPublicacao}">00/00/0000</span></p>
+    </div>
+
     <div class="item-info">
         <h1 th:text="${item.nome}"></h1>
         <div class="author" th:text="${item.autor != null ? item.autor : 'Autor Desconhecido'}"></div>
