@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/itemAcervo")
@@ -22,7 +23,7 @@ public class ItemAcervoController {
     }
 
     @PostMapping("/acessarItem/{id}")
-    public String acessarItem(@PathVariable("id") int id, Model model) {
+    public String acessarItem(@PathVariable("id") UUID id, Model model) {
         Optional<ItemAcervo> itemOptional = Optional.ofNullable(itemAcervoService.buscarPorId(id));
 
         if (itemOptional.isPresent()) {
