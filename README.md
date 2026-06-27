@@ -48,8 +48,6 @@ Enquanto isso, a equipe do museu pode manter todo o catálogo atualizado atravé
 * Excluir obras
 * Gerenciar categorias
 * Gerenciar usuários
-* Gerenciar sugestões
-
 ---
 
 ## Tecnologias utilizadas
