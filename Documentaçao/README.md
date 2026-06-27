@@ -34,4 +34,4 @@ Os diagramas foram desenvolvidos utilizando o **Astah UML**, conforme solicitado
 
 Toda a documentação foi feita com base na implementação real do sistema, ou seja, os diagramas representam o que realmente foi desenvolvido e não apenas uma ideia de como o projeto poderia funcionar.
 
-Caso alguma melhoria seja realizada futuramente no sistema, o ideal é que a documentação também seja atualizada para continuar refletindo a estrutura correta da aplicação.
+Caso alguma melhoria seja realizada futuramente no sistema, A Documentaçao tambem será atualizada para continuar refletindo a estrutura correta do Sistema.
