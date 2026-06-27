@@ -28,7 +28,7 @@ Aqui estão os diagramas e documentos que representam as funcionalidades, a estr
 
 ## Ferramentas utilizadas
 
-Os diagramas foram desenvolvidos utilizando o **Astah UML**, conforme solicitado pela disciplina. Já a documentação foi organizada junto ao restante do projeto para facilitar a consulta e manter tudo centralizado.
+Os diagramas foram desenvolvidos utilizando o **Astah UML**, conforme solicitado do Professor Herysson. Já a documentação foi organizada junto ao restante do projeto para facilitar a consulta e manter tudo centralizado.
 
 ## Observações
 
