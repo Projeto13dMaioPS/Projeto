@@ -16,7 +16,7 @@ public class ItemAcervo {
     @Column(unique = true,nullable = false)
     private String nome;
 
-    @Column(length = 500)
+    @Column(nullable = false,length = 500)
     private String descricaoBreve;
 
     @Lob
