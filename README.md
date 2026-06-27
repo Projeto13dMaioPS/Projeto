@@ -129,7 +129,9 @@ O projeto foi desenvolvido utilizando o padrão MVC (Model-View-Controller), dei
 ## Quadro de atividades do grupo ( Kanban )
 
 Voce pode acompanhar o desenvolvimento pelo quadro de atividades do grupo, com oque tem que seer feito, oque esta em revisao e oque ja foi implementado !
+
 segue o link abaixo:
+
 `https://github.com/orgs/Projeto13dMaioPS/projects/1`
 
 ---
