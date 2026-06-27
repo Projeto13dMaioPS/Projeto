@@ -1,42 +1,37 @@
-# Projeto 13 de Maio
+# Documentação do Projeto
 
-Esse é o repositório do sistema desenvolvido pelo grupo **Leonardo, Germano e  Vinicius**, um projeto web construído com Java e Spring Boot.
+Nesta pasta estão todos os documentos que foram feitos durante o desenvolvimento do sistema. A ideia é reunir toda a parte de análise e modelagem do projeto, mostrando como o sistema foi pensado antes (e durante) a implementação.
 
-## Sobre o projeto
+Aqui estão os diagramas e documentos que representam as funcionalidades, a estrutura do sistema e o funcionamento das principais operações realizadas pela aplicação.
 
-A aplicação é um sistema web completo, com backend em Java e interface renderizada pelo Thymeleaf ( html ), conectada a um banco de dados MySQL ( JPA ). A ideia foi criar uma solução simples funcional, como um catalogo das obras presentes no museu, podendo o usuario (logado) ter sua propria lista de interesse! para caso queira visitar o museu, ja tendo base um catalogo.E para funcionarios funcionalidades para cadastro de itens, gerenciamento de usuarios e etc.
+## O que tem aqui?
 
-## Tecnologias utilizadas
+* **Engenharia de Requisitos**
 
-- **Java 17**
-- **Spring Boot 4.0.6**
-- **Spring MVC** — para o roteamento e controle das requisições
-- **Spring Data JPA** — para a comunicação com o banco de dados
-- **Thymeleaf** — para os templates HTML das páginas
-- **MySQL** — banco de dados relacional
-- **Maven** — gerenciamento de dependências e build
+  * Diagrama de Casos de Uso;
+  * Descrição dos Casos de Uso.
 
-## Estrutura do projeto
+* **Modelagem do Domínio**
 
-```
-src/
-├── main/
-│   ├── java/        # Código Java (controllers, services, models, repositories)
-│   └── resources/   # FrontEnd, configurações
-└── test/            # Testes automatizados
-```
+  * Diagrama de Domínio.
 
-## Quadro de atividades do grupo ( Kanban )
+* **Projeto de Software**
 
-Voce pode acompanhar o desenvolvimento pelo quadro de atividades do grupo, com oque tem que seer feito, oque esta em revisao e oque ja foi implementado !
+  * Diagrama de Classes.
 
-segue o link abaixo:
-`https://github.com/orgs/Projeto13dMaioPS/projects/1`
+* **Diagramas de Sequência**
 
-## Branches
+  * Criar registro;
+  * Consultar/Listar registro;
+  * Alterar registro;
+  * Excluir registro.
 
-O repositório possui a branch `base`, que é o desenvolvimento em andamento do projeto, e a branch `main` com o projeto final ( atual )
+## Ferramentas utilizadas
 
----
+Os diagramas foram desenvolvidos utilizando o **Astah UML**, conforme solicitado pela disciplina. Já a documentação foi organizada junto ao restante do projeto para facilitar a consulta e manter tudo centralizado.
 
-Projeto desenvolvido como trabalho acadêmico pelo grupo Leonardo, Germano e Vinicius.
+## Observações
+
+Toda a documentação foi feita com base na implementação real do sistema, ou seja, os diagramas representam o que realmente foi desenvolvido e não apenas uma ideia de como o projeto poderia funcionar.
+
+Caso alguma melhoria seja realizada futuramente no sistema, o ideal é que a documentação também seja atualizada para continuar refletindo a estrutura correta da aplicação.
