@@ -40,29 +40,31 @@
     </div>
 
     <div th:if="${jornal}">
-        <h1 th:text="${jornal.titulo}">Título Padrão (Será substituído)</h1>
-        <p>Publicado em: <span th:text="${conteudo.dataPublicacao}">00/00/0000</span></p>
+        <h1 th:if="${jornal.getNome()}" th:text="${jornal.getNome()}"></h1>
+        <div th:text="${jornal.getDescricao()}"
+             style="white-space: pre-line;"></div>
     </div>
 
-    <div class="item-info">
-        <h1 th:text="${item.nome}"></h1>
-        <div class="author" th:text="${item.autor != null ? item.autor : 'Autor Desconhecido'}"></div>
-
-        <div class="meta-info">
-            <p><span>Ano de Publicacao:</span> <th:block th:text="${item.ano != null ? item.ano : '-'}"></th:block></p>
-            <p><span>Categoria:</span> <th:block th:text="${item.tipo != null ? item.tipo : '-'}"></th:block></p>
-            <p><span>ID do Item:</span> <th:block th:text="${item.id}"></th:block></p>
-        </div>
-
-        <div class="description" th:text="${item.descricao}"></div>
-
-        <div class="actions-block">
-            <a href="/" class="btn-back">Voltar</a>
-            <form th:action="@{/interesse/adicionar/{id}(id=${item.id})}" method="post" th:if="${session.usuarioLogado != null}">
-                <button type="submit" class="btn-favorite">Adicionar aos Favoritos</button>
-            </form>
-        </div>
+    <div th:if="${revista}">
+        <h1 th:if="${revista.getNome()}" th:text="${revista.getNome()}"></h1>
+        <div th:text="${revista.getDescricao()}"
+             style="white-space: pre-line;"></div>
     </div>
+
+    <div th:if="${livro}">
+        <h1 th:text="${livro.getTitulo()}"></h1>
+        <div th:text="${livro.getDescricao()}"
+             style="white-space: pre-line;"></div>
+        <p th:text="${livro.getEditora().getNome()}"></p>
+        <p th:text="${livro.getEditora().getCidade()}"></p>
+    </div>
+
+    <div th:if="${outro}">
+        <h1 th:text="${outro.getNome()}"></h1>
+        <div th:text="${outro.getDescricaoBreve()}"
+             style="white-space: pre-line;"></div>
+    </div>
+
 </div>
 </body>
 </html>

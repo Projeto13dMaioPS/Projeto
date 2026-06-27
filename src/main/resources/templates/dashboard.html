@@ -34,9 +34,9 @@
 </header>
 
 <div class="sidebar">
+    <a href="/dashboard/usuarios" th:if="${session.usuarioLogado.tipo.name() == 'ADMINISTRADOR'}">Usuarios</a>
     <a href="/dashboard" class="active">Acervo</a>
     <a href="/dashboard/categorias">Categorias</a>
-    <a href="/dashboard/usuarios" th:if="${session.usuarioLogado.tipo.name() == 'ADMINISTRADOR'}">Usuarios</a>
     <a href="/dashboard/sugestoes">Sugestoes</a>
 </div>
 
