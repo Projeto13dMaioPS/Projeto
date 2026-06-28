@@ -1,6 +1,7 @@
 package com.example.projetos_tm.service;
 
 import com.example.projetos_tm.model.ItemAcervo;
+import com.example.projetos_tm.model.TipoItem;
 import com.example.projetos_tm.repository.ItemAcervoRepository;
 import com.example.projetos_tm.repository.ObrasFavoritadasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,12 @@ public class ItemAcervoService {
             obrasFavoritadasRepository.deleteByItemAcervo(item);
             repository.deleteById(id);
         }
+    }
+
+    public List<ItemAcervo> listarComFiltro(String termo, TipoItem tipo) {
+        if ((termo == null || termo.isEmpty()) && tipo == null) {
+            return repository.findAll();
+        }
+        return repository.filtrar(termo, tipo);
     }
 }

@@ -4,6 +4,7 @@ import com.example.projetos_tm.model.ObrasFavoritadas;
 import com.example.projetos_tm.model.Usuario;
 import com.example.projetos_tm.service.ItemAcervoService;
 import com.example.projetos_tm.service.ObrasFavoritadasService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,18 +53,18 @@ public class ObrasFavoritadasController {
     }
 
     @PostMapping("/adicionar/{id}")
-    public String adicionar(@PathVariable("id") UUID id, HttpSession session, RedirectAttributes ra) {
+    public String adicionar(@PathVariable("id") UUID id, HttpServletRequest request, HttpSession session, RedirectAttributes ra) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
         if (usuario == null) return "redirect:/usuario/login";
-
-        session.setAttribute("avisoExibido", false);
 
         var item = itemAcervoService.buscarPorId(id);
         if (item != null) {
             favoritosService.favoritarItem(usuario, item);
-            ra.addFlashAttribute("sucesso", "Adicionado aos favoritos!");
+            ra.addFlashAttribute("sucesso", "Obra favoritada com sucesso!");
         }
-        return "redirect:/";
+
+        String referer = request.getHeader("Referer");
+        return "redirect:" + (referer != null ? referer : "/");
     }
 
     @PostMapping("/remover/{id}")

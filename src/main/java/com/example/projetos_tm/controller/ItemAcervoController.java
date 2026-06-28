@@ -1,6 +1,7 @@
 package com.example.projetos_tm.controller;
 
 import com.example.projetos_tm.model.ItemAcervo;
+import com.example.projetos_tm.model.TipoItem;
 import com.example.projetos_tm.model.Usuario;
 import com.example.projetos_tm.service.ItemAcervoService;
 import jakarta.servlet.http.HttpSession;
@@ -20,12 +21,19 @@ public class ItemAcervoController {
     private ItemAcervoService itemAcervoService;
 
     @GetMapping("/dashboard")
-    public String dashboard(HttpSession session, Model model) {
+    public String dashboard(
+            @RequestParam(required = false) String termo,
+            @RequestParam(required = false) TipoItem tipo,
+            HttpSession session, Model model) {
+
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
         if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) {
             return "redirect:/?error=negado";
         }
-        model.addAttribute("itens", itemAcervoService.listarTodos());
+
+        model.addAttribute("itens", itemAcervoService.listarComFiltro(termo, tipo));
+        model.addAttribute("termo", termo);
+        model.addAttribute("tipo", tipo);
         return "dashboard";
     }
 

@@ -50,6 +50,12 @@ public class UsuarioController {
         return "listausuarios";
     }
 
+    @GetMapping("/dashboard/usuarios/novo")
+    public String formularioNovoUsuario(Model model) {
+        model.addAttribute("usuario", new Usuario());
+        return "cadastrarUsuario";
+    }
+
     @PostMapping("/dashboard/usuarios/salvar")
     public String salvarNovo(@ModelAttribute Usuario usuario) {
         usuarioService.salvar(usuario);
