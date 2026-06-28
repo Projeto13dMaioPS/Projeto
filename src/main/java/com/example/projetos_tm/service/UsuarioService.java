@@ -31,21 +31,35 @@ public class UsuarioService {
     public void deletar(UUID id) {
         repository.deleteById(id);
     }
-//
-    // Regra de Autenticação para a sessão
-    public Usuario realizarLogin(String email, String senha) {
 
-        Optional<Usuario> opcional = repository.findByEmail(email);
-
-        if (!opcional.isPresent()) {
-            return null; //nao existe usuario com esse email
+    public void atualizarPerfil(UUID id, String nome, String email) {
+        Usuario u = repository.findById(id).orElse(null);
+        if (u != null) {
+            u.setNome(nome);
+            u.setEmail(email);
+            repository.save(u);
         }
+    }
 
+    public boolean alterarSenha(UUID id, String senhaAtual, String novaSenha) {
+        Usuario u = repository.findById(id).orElse(null);
+        if (u != null && u.getSenha().equals(senhaAtual)) {
+            u.setSenha(novaSenha);
+            repository.save(u);
+            return true;
+        }
+        return false;
+    }
+
+    public Usuario realizarLogin(String email, String senha) {
+        Optional<Usuario> opcional = repository.findByEmail(email);
+        if (!opcional.isPresent()) {
+            return null;
+        }
         Usuario usuario = opcional.get();
         if (usuario != null && usuario.getSenha().equals(senha)) {
-            return usuario; // Sucesso
+            return usuario;
         }
-        return null; // Credenciais inválidas
-
+        return null;
     }
 }

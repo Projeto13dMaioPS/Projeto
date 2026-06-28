@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu Perfil - Acervo Digital</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f4f6f8; color: #333; }
+        header { background: #1976d2; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; color: white; }
+        .header-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; font-weight: bold; }
+        .sidebar { width: 220px; background: white; height: 100vh; float: left; border-right: 1px solid #ddd; padding-top: 20px; position: fixed; }
+        .sidebar a { display: block; padding: 15px 20px; color: #333; text-decoration: none; border-left: 4px solid transparent; }
+        .sidebar a:hover, .sidebar a.active { background: #f0f0f0; border-left-color: #1976d2; font-weight: bold; }
+        .content { margin-left: 220px; padding: 30px; }
+
+        .card { background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 30px; border: 1px solid #eee; max-width: 600px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+
+        .btn { padding: 10px 20px; border-radius: 5px; text-decoration: none; font-size: 14px; font-weight: bold; border: none; cursor: pointer; display: inline-block; }
+        .btn-blue { background: #1976d2; color: white; }
+        .btn-red { background: #feebee; color: #c62828; border: 1px solid #ffcdd2; }
+
+        .alert { padding: 15px; margin-bottom: 20px; border-radius: 5px; text-align: center; font-weight: bold; }
+        .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .alert-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="font-size: 18px; font-weight: bold;">Acervo Digital</div>
+    <div class="header-links">
+        <a href="/">Catálogo</a>
+        <a href="/usuario/logout">Sair</a>
+    </div>
+</header>
+
+<div class="sidebar">
+    <a href="/">Catálogo</a>
+    <a href="/favoritos" th:if="${session.usuarioLogado != null}">Favoritos</a>
+</div>
+
+<div class="content">
+    <h2>Gerenciar Perfil</h2>
+
+    <div th:if="${sucesso}" class="alert alert-success" th:text="${sucesso}"></div>
+    <div th:if="${erro}" class="alert alert-error" th:text="${erro}"></div>
+
+    <div class="card">
+        <h3>Dados Pessoais</h3>
+        <form th:action="@{/usuario/meu-perfil/atualizar}" th:object="${usuario}" method="post">
+            <input type="hidden" th:field="*{id}">
+
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" th:field="*{nome}" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" th:field="*{email}" required>
+            </div>
+            <button type="submit" class="btn btn-blue">Atualizar Dados</button>
+        </form>
+
+        <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+        <h3>Alterar Senha</h3>
+        <form th:action="@{/usuario/meu-perfil/senha}" method="post">
+            <div class="form-group">
+                <label>Senha Atual</label>
+                <input type="password" name="senhaAtual" required>
+            </div>
+            <div class="form-group">
+                <label>Nova Senha</label>
+                <input type="password" name="novaSenha" required>
+            </div>
+            <button type="submit" class="btn btn-blue" style="background: #e53935;">Alterar Senha</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

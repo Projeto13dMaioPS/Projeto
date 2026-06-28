@@ -1,7 +1,6 @@
 package com.example.projetos_tm.model;
 
 import jakarta.persistence.*;
-
 import java.util.Base64;
 import java.util.UUID;
 
@@ -13,10 +12,10 @@ public class ItemAcervo {
     @Column(updatable = false, nullable = false)
     private UUID id;
 
-    @Column(unique = true,nullable = false)
+    @Column(unique = true, nullable = false)
     private String nome;
 
-    @Column(nullable = false,length = 500)
+    @Column(nullable = false, length = 500)
     private String descricaoBreve;
 
     @Lob
@@ -27,23 +26,29 @@ public class ItemAcervo {
     @Column(nullable = false)
     private TipoItem tipo;
 
+    @Column(nullable = false)
+    private boolean ativo = true;
 
-    public ItemAcervo(UUID id, String nome, String descricaoBreve, byte[] imagem, TipoItem tipo) {
+    private String autor;
+
+    private String isbn;
+
+    private String edicao;
+
+    public ItemAcervo() {
+    }
+
+    public ItemAcervo(UUID id, String nome, String descricaoBreve, byte[] imagem, TipoItem tipo, boolean ativo, String autor, String isbn, String edicao) {
         this.id = id;
         this.nome = nome;
         this.descricaoBreve = descricaoBreve;
         this.imagem = imagem;
         this.tipo = tipo;
+        this.ativo = ativo;
+        this.autor = autor;
+        this.isbn = isbn;
+        this.edicao = edicao;
     }
-
-    public ItemAcervo(String nome, String descricaoBreve, byte[] imagem, TipoItem tipo) {
-        this.nome = nome;
-        this.descricaoBreve = descricaoBreve;
-        this.imagem = imagem;
-        this.tipo = tipo;
-    }
-
-    public ItemAcervo() {}
 
     public UUID getId() {
         return id;
@@ -85,9 +90,40 @@ public class ItemAcervo {
         this.tipo = tipo;
     }
 
-    public String getImagemEmBase64() {
-        if (this.imagem == null) return null;
-        return "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(this.imagem);
+    public boolean isAtivo() {
+        return ativo;
     }
 
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public String getEdicao() {
+        return edicao;
+    }
+
+    public void setEdicao(String edicao) {
+        this.edicao = edicao;
+    }
+
+    public String getImagemEmBase64() {
+        if (imagem == null) return null;
+        return "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(imagem);
+    }
 }
