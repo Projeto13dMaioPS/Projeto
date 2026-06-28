@@ -32,10 +32,10 @@ Enquanto isso, a equipe do museu pode manter todo o catálogo atualizado atravé
 * Pesquisar obras
 * Filtrar resultados
 * Visualizar detalhes das obras
+* Criar conta
 
 ### Usuário Logado
 
-* Criar conta
 * Fazer login
 * Adicionar obras aos favoritos
 * Visualizar lista de favoritos
@@ -43,11 +43,9 @@ Enquanto isso, a equipe do museu pode manter todo o catálogo atualizado atravé
 
 ### Administração
 
-* Cadastrar obras
-* Editar obras
-* Excluir obras
-* Gerenciar categorias
+* Gerenciar Obras
 * Gerenciar usuários
+  
 ---
 
 ## Tecnologias utilizadas
