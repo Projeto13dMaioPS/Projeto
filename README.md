@@ -148,7 +148,7 @@ Na pasta **documentaçao** estão todos os diagramas desenvolvidos durante o pro
 
 Link do vídeo:
 
-[Video de Apresentaçao do Museu Virtual](https://www.youtube.com/watch?v=eBxEswXy5o0)
+[Video de Apresentaçao do Museu Virtual](https://www.youtube.com/watch?v=IE8EVoxV37g)
 
 ---
 
