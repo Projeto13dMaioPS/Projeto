@@ -150,7 +150,7 @@ Link do vídeo:
 
 [Video de Apresentaçao do Museu Virtual](https://www.youtube.com/watch?v=TV2Xhr5LVUs)
 
-[Slides de apresentaçao do Sistema](https://www.youtube.com/watch?v=TV2Xhr5LVUs)
+[Slides de apresentaçao do Sistema](https://canva.link/can2l56rcc9h67x)
 
 ---
 
