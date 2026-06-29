@@ -21,19 +21,16 @@ public class ItemAcervoController {
     private ItemAcervoService itemAcervoService;
 
     @GetMapping("/dashboard")
-    public String dashboard(
-            @RequestParam(required = false) String termo,
-            @RequestParam(required = false) TipoItem tipo,
-            HttpSession session, Model model) {
-
+    public String dashboard(@RequestParam(required = false) String termo,
+                            @RequestParam(required = false) TipoItem tipo,
+                            @RequestParam(required = false) Boolean ativo,
+                            HttpSession session, Model model) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-        if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) {
-            return "redirect:/?error=negado";
-        }
-
-        model.addAttribute("itens", itemAcervoService.listarComFiltro(termo, tipo));
+        if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) return "redirect:/?error=negado";
+        model.addAttribute("itens", itemAcervoService.listarComFiltro(termo, tipo, ativo));
         model.addAttribute("termo", termo);
         model.addAttribute("tipo", tipo);
+        model.addAttribute("ativo", ativo);
         return "dashboard";
     }
 
@@ -48,49 +45,33 @@ public class ItemAcervoController {
     @GetMapping("/novo")
     public String formularioNovo(HttpSession session, Model model) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-        if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) {
-            return "redirect:/";
-        }
+        if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) return "redirect:/";
         model.addAttribute("item", new ItemAcervo());
         return "novoitem";
     }
 
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute ItemAcervo item,
-                         @RequestParam(value = "file", required = false) MultipartFile file,
-                         HttpSession session, RedirectAttributes ra) {
-
+    public String salvar(@ModelAttribute ItemAcervo item, @RequestParam(value = "file", required = false) MultipartFile file, HttpSession session, RedirectAttributes ra) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-        if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) {
-            return "redirect:/";
-        }
-
+        if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) return "redirect:/";
         try {
-            if (file != null && !file.isEmpty()) {
-                item.setImagem(file.getBytes());
-            } else if (item.getId() != null) {
+            if (file != null && !file.isEmpty()) item.setImagem(file.getBytes());
+            else if (item.getId() != null) {
                 ItemAcervo itemExistente = itemAcervoService.buscarPorId(item.getId());
-                if (itemExistente != null) {
-                    item.setImagem(itemExistente.getImagem());
-                }
+                if (itemExistente != null) item.setImagem(itemExistente.getImagem());
             }
-
             itemAcervoService.salvar(item);
             ra.addFlashAttribute("sucesso", "Item salvo com sucesso!");
-
         } catch (Exception e) {
             ra.addFlashAttribute("erro", "Erro ao salvar imagem: " + e.getMessage());
         }
-
         return "redirect:/itemAcervo/dashboard";
     }
 
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable UUID id, HttpSession session, Model model) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-        if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) {
-            return "redirect:/";
-        }
+        if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) return "redirect:/";
         ItemAcervo item = itemAcervoService.buscarPorId(id);
         model.addAttribute("item", item);
         return "novoitem";
@@ -99,9 +80,7 @@ public class ItemAcervoController {
     @PostMapping("/excluir/{id}")
     public String excluir(@PathVariable UUID id, HttpSession session, RedirectAttributes ra) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-        if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) {
-            return "redirect:/";
-        }
+        if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) return "redirect:/";
         itemAcervoService.excluir(id);
         ra.addFlashAttribute("sucesso", "Item excluído!");
         return "redirect:/itemAcervo/dashboard";
@@ -110,9 +89,7 @@ public class ItemAcervoController {
     @PostMapping("/desabilitar/{id}")
     public String desabilitar(@PathVariable UUID id, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-        if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) {
-            return "redirect:/";
-        }
+        if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) return "redirect:/";
         itemAcervoService.desabilitar(id);
         return "redirect:/itemAcervo/dashboard";
     }
@@ -120,9 +97,7 @@ public class ItemAcervoController {
     @PostMapping("/reativar/{id}")
     public String reativar(@PathVariable UUID id, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-        if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) {
-            return "redirect:/";
-        }
+        if (usuario == null || !"ADMINISTRADOR".equals(usuario.getTipo().name())) return "redirect:/";
         itemAcervoService.reativar(id);
         return "redirect:/itemAcervo/dashboard";
     }

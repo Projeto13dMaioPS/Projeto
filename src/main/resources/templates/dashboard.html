@@ -11,12 +11,10 @@
         .sidebar a { display: block; padding: 15px 20px; color: #333; text-decoration: none; border-left: 4px solid transparent; }
         .sidebar a:hover, .sidebar a.active { background: #f0f0f0; border-left-color: #1976d2; font-weight: bold; }
         .content { margin-left: 220px; padding: 30px; }
-
         .search-box { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .form-row { display: flex; gap: 15px; align-items: flex-end; }
         .form-group { flex-grow: 1; }
         input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .card { background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
         .card-img { width: 100%; height: 200px; object-fit: cover; background: #eee; }
@@ -25,6 +23,7 @@
         .btn { padding: 8px 12px; border-radius: 4px; text-decoration: none; font-size: 12px; text-align: center; border: none; cursor: pointer; font-weight: 600; display: block; width: 100%; box-sizing: border-box; }
         .btn-blue { background: #1976d2; color: white; }
         .btn-red { background: #feebee; color: #c62828; border: 1px solid #ffcdd2; }
+        .btn-gray { background: #e0e0e0; color: #333; }
     </style>
 </head>
 <body>
@@ -44,7 +43,6 @@
         <h2>Gerenciar Acervo</h2>
         <a href="/itemAcervo/novo" class="btn btn-blue" style="width: auto; padding: 10px 20px;">+ Adicionar Item</a>
     </div>
-
     <div class="search-box">
         <form th:action="@{/itemAcervo/dashboard}" method="get" class="form-row">
             <div class="form-group">
@@ -59,11 +57,18 @@
                             th:value="${t}" th:text="${t}" th:selected="${t == tipo}"></option>
                 </select>
             </div>
+            <div>
+                <label style="font-size: 12px; font-weight: bold;">Status</label>
+                <select name="ativo">
+                    <option value="">Todos</option>
+                    <option value="true" th:selected="${ativo != null and ativo == true}">Ativo</option>
+                    <option value="false" th:selected="${ativo != null and ativo == false}">Inativo</option>
+                </select>
+            </div>
             <button type="submit" class="btn btn-blue" style="width: auto;">Filtrar</button>
             <a href="/itemAcervo/dashboard" class="btn btn-gray" style="width: auto; text-decoration: none;">Limpar</a>
         </form>
     </div>
-
     <div class="grid">
         <div class="card" th:each="item : ${itens}">
             <img th:if="${item.imagemEmBase64 != null}" th:src="${item.imagemEmBase64}" class="card-img">
@@ -79,7 +84,10 @@
                     <button type="submit" class="btn btn-red" style="width: 100%;">Desabilitar</button>
                 </form>
                 <form th:unless="${item.ativo}" th:action="@{/itemAcervo/reativar/{id}(id=${item.id})}" method="post">
-                    <button type="submit" class="btn btn-red" style="width: 100%;">Reativar</button>
+                    <button type="submit" class="btn btn-blue" style="width: 100%;">Reativar</button>
+                </form>
+                <form th:action="@{/itemAcervo/excluir/{id}(id=${item.id})}" method="post" onsubmit="return confirm('Confirmar exclusão permanente?');" style="grid-column: span 2;">
+                    <button type="submit" class="btn btn-red" style="width: 100%;">Excluir Permanente</button>
                 </form>
             </div>
         </div>

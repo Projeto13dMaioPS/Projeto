@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class ItemAcervoService {
@@ -57,10 +58,13 @@ public class ItemAcervoService {
         }
     }
 
-    public List<ItemAcervo> listarComFiltro(String termo, TipoItem tipo) {
-        if ((termo == null || termo.isEmpty()) && tipo == null) {
-            return repository.findAll();
+    public List<ItemAcervo> listarComFiltro(String termo, TipoItem tipo, Boolean ativo) {
+        List<ItemAcervo> lista = repository.filtrar(termo, tipo);
+        if (ativo != null) {
+            return lista.stream()
+                    .filter(i -> i.isAtivo() == ativo)
+                    .collect(Collectors.toList());
         }
-        return repository.filtrar(termo, tipo);
+        return lista;
     }
 }
